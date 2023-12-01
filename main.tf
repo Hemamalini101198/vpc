@@ -12,7 +12,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    name = "${var.project_name_env}-igw"
+    Name = "${var.project_name_env}-igw"
   }
 }
 
@@ -25,7 +25,7 @@ resource "aws_route_table" "public" {
     gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
-    name = "${var.project_name_env}-publicsubnet-rt"
+    Name = "${var.project_name_env}-publicsubnet-rt"
   }
 }
 
@@ -37,7 +37,7 @@ resource "aws_subnet" "public1_subnet" {
   map_public_ip_on_launch = true
    
   tags = {
-    name = "${var.project_name_env}-publicsubnet1"
+    Name = "${var.project_name_env}-publicsubnet1"
   }
 }
 
@@ -49,7 +49,7 @@ resource "aws_subnet" "public2_subnet" {
   map_public_ip_on_launch = true
   
   tags = {
-    name = "${var.project_name_env}-publicsubnet2"
+    Name = "${var.project_name_env}-publicsubnet2"
   }
 }
 
@@ -61,7 +61,7 @@ resource "aws_subnet" "private1_subnet" {
   # Associate this subnet with the shared route table
   
   tags = {
-    name = "${var.project_name_env}-privatesubnet1"
+    Name = "${var.project_name_env}-privatesubnet1"
   }
 }
 
@@ -72,7 +72,7 @@ resource "aws_subnet" "private2_subnet" {
   availability_zone       = "ap-south-1b"  
 
   tags = {
-    name = "${var.project_name_env}-privatesubnet2"
+    Name = "${var.project_name_env}-privatesubnet2"
   }
 }
 
@@ -95,7 +95,7 @@ resource "aws_eip" "nat_ip" {
   #instance = null
 
   tags = {
-    name = "${var.project_name_env}-eip"
+    Name = "${var.project_name_env}-eip"
   } 
 }
 
@@ -106,7 +106,7 @@ resource "aws_nat_gateway" "nat" {
   depends_on    = [aws_internet_gateway.igw]
   
   tags = {
-    name = "${var.project_name_env}-natgw"
+    Name = "${var.project_name_env}-natgw"
   }
 }
 
@@ -118,7 +118,7 @@ resource "aws_route_table" "private" {
     gateway_id = aws_nat_gateway.nat.id
   }
   tags = {
-    name = "${var.project_name_env}-privatesubnet-rt"
+    Name = "${var.project_name_env}-privatesubnet-rt"
   }
 }
 
