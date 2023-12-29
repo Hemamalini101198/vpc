@@ -133,7 +133,7 @@ resource "aws_route_table_association" "private_association2" {
   route_table_id = aws_route_table.private.id
 }
 
-resource "aws_security_group" "my-eks-sg" {
+resource "aws_security_group" "sg" {
   description = "Allow inbound traffic"
   vpc_id = aws_vpc.vpc.id
 
