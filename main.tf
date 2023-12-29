@@ -132,3 +132,26 @@ resource "aws_route_table_association" "private_association2" {
   subnet_id      = aws_subnet.private2_subnet.id
   route_table_id = aws_route_table.private.id
 }
+
+resource "aws_security_group" "my-eks-sg" {
+  description = "Allow inbound traffic"
+  vpc_id = aws_vpc.vpc.id
+
+  ingress {
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = var.cidr_block
+  } 
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+tags = {
+    name = "${var.project_name_env}-sg"
+  }
+
+}
