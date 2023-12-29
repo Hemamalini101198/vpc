@@ -22,3 +22,8 @@ output "public2_subnet_id" {
   description = "IDs of the public subnet2"
   value = aws_subnet.public2_subnet.id
 }
+
+output "sg_id" {
+  description = "security group id"
+  value = aws_security_group.sg.id
+}
